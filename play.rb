@@ -10,8 +10,8 @@ cola = Drink.new(name: "コーラ", price: 100, stock: 5)
 monster = Drink.new(name: "モンスター", price: 210, stock: 3)
 
 loop do
-  user.choices
-  case @select_num = gets.to_i
+  user.action
+  case  gets.to_i
   when 1
     puts "1"
   when 2
