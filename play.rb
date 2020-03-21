@@ -14,6 +14,8 @@ loop do
   when 2
     machine.insert
   when 3
+    machine.confirm
+  when 4
     machine.refund
     break
   end

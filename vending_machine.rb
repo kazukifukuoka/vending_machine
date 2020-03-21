@@ -34,7 +34,8 @@ class VendingMachine
       次はどうする？
       1. 飲み物を選ぶ
       2. 追加でお金を入れる
-      3. お釣りを出す
+      3. 投入金額を確認する
+      4. お釣りを出す
 
     text
   end
@@ -51,5 +52,14 @@ class VendingMachine
 
     text
     refund_money = @total
+  end
+
+  def confirm
+
+    puts <<~text
+
+    自動販売機には#{@total}円入っています
+
+    text
   end
 end
