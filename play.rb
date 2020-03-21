@@ -6,8 +6,6 @@ user = User.new
 machine = VendingMachine.new(machine: machine)
 cola = Drink.new(name: "コーラ", price: 100)
 
-user.insert
-
 loop do
   user.choices
   case @select_num = gets.to_i
