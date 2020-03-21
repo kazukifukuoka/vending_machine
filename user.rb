@@ -22,13 +22,14 @@ class User
       puts <<~text
 
         指定された金額から選んでください
+
       text
       @refund_money = @insert_money
       refund
     end
   end
 
-  def choices
+  def action
     puts <<~text
 
       次はどうする？
