@@ -1,8 +1,8 @@
-class VendingMachine
+# class VendingMachine
 
-  def initialize
-    @total = 0
-    @drink_table = []
-  end
+#   def initialize
+#     @total = 0
+#     @drink_table = []
+#   end
 
-end
+# end
