@@ -3,8 +3,9 @@ require './vending_machine'
 require './drink'
 
 user = User.new
-machine = VendingMachine.new(machine: machine)
-cola = Drink.new(name: "コーラ", price: 100)
+machine = VendingMachine.new
+cola = Drink.new(name: "コーラ", price: 100, stock: 5)
+
 
 loop do
   user.choices
