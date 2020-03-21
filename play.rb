@@ -1,22 +1,24 @@
+require './user'
 require './vending_machine'
 require './drink'
 
+user = User.new
 machine = VendingMachine.new(machine: machine)
 cola = Drink.new(name: "コーラ", price: 100)
 
-machine.insert
+user.insert
 
 loop do
-  machine.choices
+  user.choices
   case @select_num = gets.to_i
   when 1
     puts "1"
   when 2
-    machine.insert
+    user.insert
   when 3
-    machine.confirm
+    user.confirm
   when 4
-    machine.refund
+    user.refund
     break
   end
 end
