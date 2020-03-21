@@ -3,6 +3,7 @@ class User
 
   def initialize
     @total_insert_money = 0
+    @refund_money = 0
   end
 
   def insert
@@ -40,12 +41,17 @@ class User
   end
 
   def refund
-    puts <<~text
 
-      #{@refund_money}円が戻ってきた
+    if @refund_money > 0
+      puts <<~text
 
-    text
-    @refund_money = @total_insert_money
+        #{@refund_money}円が戻ってきた
+
+      text
+      @refund_money = @total_insert_money
+    else
+      puts "お金を入れてください"
+    end
   end
 
   def confirm
