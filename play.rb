@@ -4,6 +4,7 @@ require './drink'
 
 user = User.new
 
+# プログラムの実行
 loop do
   user.action
   case  gets.to_i

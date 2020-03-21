@@ -1,6 +1,7 @@
 require './drink'
 
 class User < Drink
+  # ユーザーが使えるお金
   AVAILABLE_MONEY = [10, 50, 100, 500, 1000].freeze
 
   def initialize(**params)
@@ -8,6 +9,20 @@ class User < Drink
     @refund_money = 0
   end
 
+  # ユーザーの選択肢
+  def action
+    puts <<~text
+
+      どうしますか？
+      1. 飲み物を選ぶ
+      2. 追加でお金を入れる
+      3. 投入金額を確認する
+      4. お釣りを出す
+
+    text
+  end
+
+  # 1. 飲み物の購入
   def buy
     puts <<~text
 
@@ -21,6 +36,7 @@ class User < Drink
 
   end
 
+  # 2. お金を入れる
   def insert
     puts <<~text
 
@@ -44,18 +60,17 @@ class User < Drink
     end
   end
 
-  def action
+  # 3. 投入金額の確認
+  def confirm
+
     puts <<~text
 
-      次はどうする？
-      1. 飲み物を選ぶ
-      2. 追加でお金を入れる
-      3. 投入金額を確認する
-      4. お釣りを出す
+    自動販売機には#{@total_insert_money}円入っています
 
     text
   end
 
+  # 4. お釣りを出す
   def refund
 
     if @refund_money > 0
@@ -68,15 +83,6 @@ class User < Drink
     else
       puts "お金を入れてください"
     end
-  end
-
-  def confirm
-
-    puts <<~text
-
-    自動販売機には#{@total_insert_money}円入っています
-
-    text
   end
 
 end
