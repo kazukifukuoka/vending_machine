@@ -1,7 +1,6 @@
 class VendingMachine
 
-  def initialize(machine:)
-    @machine = machine
+  def initialize
     @total = 0
     @drink_table = []
   end
