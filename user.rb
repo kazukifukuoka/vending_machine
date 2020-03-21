@@ -1,9 +1,24 @@
-class User
+require './drink'
+
+class User < Drink
   AVAILABLE_MONEY = [10, 50, 100, 500, 1000].freeze
 
-  def initialize
+  def initialize(**params)
     @total_insert_money = 0
     @refund_money = 0
+  end
+
+  def buy
+    puts <<~text
+
+    何を購入しますか？
+    1. 水(120円)
+    2. コーラ(150円)
+    3. モンスター(210円)
+
+    text
+    Drink.buy
+
   end
 
   def insert
