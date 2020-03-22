@@ -1,20 +1,24 @@
-require './user'
+require './vender_machine'
+require './message_to_user'
 
-user = User.new
+class Play
+include MessageToUser
+vender = VenderMachine.new
 # プログラムの実行
 loop do
-  user.action
+  puts MessageToUser.hello_message
   case  gets.to_i
   when 1
-    user.buy
+    vender.buy
   when 2
-    user.insert
+    vender.insert
   when 3
-    user.confirm
+    vender.confirm
   when 4
-    user.refund
+    vender.refund
     break
   else
     puts "1~4の番号を入力して下さい"
   end
+end
 end
