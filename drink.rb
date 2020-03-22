@@ -1,4 +1,6 @@
-class Drink
+require './user'
+
+class Drink < User
   attr_reader :name, :price, :stock
 
   def initialize(**params)
@@ -12,7 +14,7 @@ class Drink
     cola = Drink.new(name: "コーラ", price: 150, stock: 5)
     monster = Drink.new(name: "モンスター", price: 210, stock: 3)
 
-    case gets.to_i
+    case  gets.to_i
     when 1
       @juice = water
     when 2
@@ -21,11 +23,14 @@ class Drink
       @juice = monster
     end
 
-    puts <<~text
+  end
 
-    #{@juice.name}を購入しました
-
-    text
+  def self.buy_message
+  puts <<~text
+  
+  #{@juice.name}を購入しました
+  
+  text
   end
 end
 
