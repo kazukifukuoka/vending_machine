@@ -1,9 +1,6 @@
 require './user'
-require './vending_machine'
-require './drink'
 
 user = User.new
-
 # プログラムの実行
 loop do
   user.action
@@ -17,5 +14,7 @@ loop do
   when 4
     user.refund
     break
+  else
+    puts "1~4の番号を入力して下さい"
   end
 end
