@@ -30,13 +30,10 @@ class VenderMachine
     if @total_insert_money >= juice.price
       puts MessageToUser.buy_juice_message(juice)
       @total_insert_money -= juice.price
-# ーー毎回ローカル変数に代入してモジュールのメソッドを呼ぶのかーーーー
-      total_insert_money = @total_insert_money
-      puts MessageToUser.enough_money(total_insert_money)
-# ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+      puts MessageToUser.enough_money_message(@total_insert_money)
       @refund_money = @total_insert_money
     else
-      puts MessageToUser.not_enough_money
+      puts MessageToUser.not_enough_money_message
     end
 
   end
@@ -47,14 +44,10 @@ class VenderMachine
     @insert_money = gets.to_i
     if AVAILABLE_MONEY.include?(@insert_money)
       @total_insert_money += @insert_money
-      puts "自動販売機には#{@total_insert_money}円入っています"
+      puts MessageToUser.confirm_money_message(@total_insert_money)
       @refund_money = @total_insert_money
     else
-      puts <<~text
-
-        指定された金額から選んでください
-
-      text
+      puts MessageToUser.error_message
       @refund_money = @insert_money
       refund
     end
@@ -62,32 +55,17 @@ class VenderMachine
 
   # 3. 投入金額の確認
   def confirm
-
-    puts <<~text
-
-    自動販売機には#{@total_insert_money}円入っています
-
-    text
+    puts MessageToUser.confirm_money_message(@total_insert_money)
   end
 
   # 4. お釣りを出す
   def refund
 
     if @refund_money > 0
-      puts <<~text
-
-        #{@refund_money}円が戻ってきた
-
-      text
+      puts MessageToUser.refund_money_message(@refund_money)
       @refund_money = @total_insert_money
     else
-      puts <<~text
-
-        お釣りはありません
-        ありがとうございました
-
-      text
-
+      puts MessageToUser.thanks_message
     end
   end
 end
