@@ -2,9 +2,9 @@ require './vender_machine'
 require './message_to_user'
 
 class Play
-AVAILABLE_MONEY = [10, 50, 100, 500, 1000].freeze
-include MessageToUser
-vender = VenderMachine.new
+  include MessageToUser
+  AVAILABLE_MONEY = [10, 50, 100, 500, 1000].freeze
+  vender = VenderMachine.new
 # プログラムの実行
   loop do
     MessageToUser.hello_message
@@ -14,7 +14,6 @@ vender = VenderMachine.new
       MessageToUser.select_juice_message
       select_juice_num = gets.to_i
       judge_to_buy = vender.buy(select_juice_num)
-
       if judge_to_buy == true
         MessageToUser.buy_juice_message(vender.juice[select_juice_num])
         MessageToUser.enough_money_message(vender.total_insert_money)
@@ -27,7 +26,6 @@ vender = VenderMachine.new
       MessageToUser.insert_money_message
       insert_money = gets.to_i
       vender.insert(insert_money)
-
       if AVAILABLE_MONEY.include?(insert_money)
         MessageToUser.confirm_money_message(vender.total_insert_money)
       else
