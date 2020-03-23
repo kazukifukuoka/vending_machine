@@ -26,7 +26,6 @@ module MessageToUser
     puts <<~text
 
       #{juice.price}円の#{juice.name}を購入しました
-
     text
   end
 
@@ -56,7 +55,10 @@ module MessageToUser
   end
 
   def confirm_money_message(total_insert_money)
-    puts "自動販売機には#{total_insert_money}円入っています"
+    puts <<~text
+
+      自動販売機には#{total_insert_money}円入っています
+      text
   end
 
   def error_message
@@ -64,7 +66,6 @@ module MessageToUser
 
         入力に誤りがあります
         やり直して下さい
-
       text
   end
 
@@ -72,6 +73,7 @@ module MessageToUser
     puts <<~text
 
         #{refund_money}円が戻ってきた
+        ありがとうございました
 
       text
   end
