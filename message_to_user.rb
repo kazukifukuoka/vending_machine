@@ -4,7 +4,7 @@ module MessageToUser
 
     どうしますか？
     1. 飲み物を選ぶ
-    2. 追加でお金を入れる
+    2. お金を入れる
     3. 投入金額を確認する
     4. お釣りを出して終了
 
@@ -49,7 +49,7 @@ module MessageToUser
   def insert_money_message
     puts <<~text
 
-      お金を何円入れますか？
+      どの硬貨を入れますか？
       10,50,100,500,1000から選んで入力してください
 
     text

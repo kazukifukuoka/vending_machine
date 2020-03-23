@@ -15,9 +15,7 @@ class VenderMachine
   end
 
   # 1. 飲み物の購入
-  def buy
-
-    puts MessageToUser.select_juice_message
+  def buy()
     case  gets.to_i
     when 1
       juice = @@water
@@ -28,26 +26,26 @@ class VenderMachine
     end
 
     if @total_insert_money >= juice.price
-      puts MessageToUser.buy_juice_message(juice)
+      MessageToUser.buy_juice_message(juice)
       @total_insert_money -= juice.price
-      puts MessageToUser.enough_money_message(@total_insert_money)
+      MessageToUser.enough_money_message(@total_insert_money)
       @refund_money = @total_insert_money
     else
-      puts MessageToUser.not_enough_money_message
+      MessageToUser.not_enough_money_message
     end
 
   end
 
   # 2. お金を入れる
   def insert
-    puts MessageToUser.insert_money_message
+
     @insert_money = gets.to_i
     if AVAILABLE_MONEY.include?(@insert_money)
       @total_insert_money += @insert_money
-      puts MessageToUser.confirm_money_message(@total_insert_money)
+      MessageToUser.confirm_money_message(@total_insert_money)
       @refund_money = @total_insert_money
     else
-      puts MessageToUser.error_message
+      MessageToUser.error_message
       @refund_money = @insert_money
       refund
     end
@@ -55,17 +53,17 @@ class VenderMachine
 
   # 3. 投入金額の確認
   def confirm
-    puts MessageToUser.confirm_money_message(@total_insert_money)
+    MessageToUser.confirm_money_message(@total_insert_money)
   end
 
   # 4. お釣りを出す
   def refund
 
     if @refund_money > 0
-      puts MessageToUser.refund_money_message(@refund_money)
+      MessageToUser.refund_money_message(@refund_money)
       @refund_money = @total_insert_money
     else
-      puts MessageToUser.thanks_message
+      MessageToUser.thanks_message
     end
   end
 end
