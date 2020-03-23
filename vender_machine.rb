@@ -14,6 +14,9 @@ class VenderMachine
       1 => Drink.new(name: "水", price: 100, stock: 10),
       2 => Drink.new(name: "コーラ", price: 150, stock: 5),
       3 => Drink.new(name: "モンスター", price: 210, stock: 3),
+      4 => Drink.new(name: "フルーツドリンク", price: 80, stock: 8),
+      5 => Drink.new(name: "リポビタンD", price: 130, stock: 5),
+      6 => Drink.new(name: "ファンタグレープ", price: 150, stock: 10)
     }
   end
 
