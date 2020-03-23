@@ -18,7 +18,7 @@ loop do
     vender.refund
     break
   else
-    puts "1~4の番号を入力して下さい"
+    puts MessageToUser.error_message
   end
 end
 end
