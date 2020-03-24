@@ -1,47 +1,46 @@
-require './vender_machine'
+require './vending_machine'
 require './message_to_user'
 
 class Play
-  include MessageToUser
-  vender = VenderMachine.new
+  vender = VendingMachine.new
 # プログラムの実行
   loop do
-    MessageToUser.hello_message
+    hello
 
     case  gets.to_i
     when 1
-      MessageToUser.select_juice_message
-      select_juice_num = gets.to_i
-      buy_flag = vender.buy(select_juice_num)
-      if buy_flag == true
-        MessageToUser.buy_juice_message(vender.juice[select_juice_num])
-        MessageToUser.enough_money_message(vender.total_insert_money)
-      elsif buy_flag == false
-        MessageToUser.error_message
+      select_juice
+      @select_juice_num = gets.to_i
+      @buy_flag = vender.buy(@select_juice_num)
+      if @buy_flag == true
+        buy_juice(vender.juice[@select_juice_num])
+        enough_money(vender.total_insert_money)
+      elsif @buy_flag == false
+        error
       else
-        MessageToUser.not_enough_money_message
+        not_enough_money
       end
     when 2
-      MessageToUser.insert_money_message
-      insert_money = gets.to_i
-      insert_flag = vender.insert(insert_money)
-      if insert_flag
-        MessageToUser.confirm_money_message(vender.total_insert_money)
+      insert_money
+      @insert_money = gets.to_i
+      @insert_flag = vender.insert(@insert_money)
+      if @insert_flag
+        confirm_money(vender.total_insert_money)
       else
-        MessageToUser.error_message
+        error
       end
     when 3
-      MessageToUser.confirm_money_message(vender.total_insert_money)
+      confirm_money(vender.total_insert_money)
     when 4
       if vender.refund_money > 0
         vender.refund
-        MessageToUser.refund_money_message(vender.refund_money)
+        refund_money(vender.refund_money)
       else
-        MessageToUser.thanks_message
+        thanks
       end
       break
     else
-      MessageToUser.error_message
+      error
     end
   end
 end

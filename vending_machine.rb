@@ -1,8 +1,7 @@
 require './drink'
 require './message_to_user'
 
-class VenderMachine
-  include MessageToUser
+class VendingMachine
   # ユーザーが使えるお金
   AVAILABLE_MONEY = [10, 50, 100, 500, 1000].freeze
   attr_accessor :total_insert_money, :juice, :insert_money, :refund_money
@@ -25,19 +24,20 @@ class VenderMachine
     if @juice[juice_index_num] && @total_insert_money >= @juice[juice_index_num].price
       @total_insert_money -= @juice[juice_index_num].price
       @refund_money = @total_insert_money
-      buy_flag = true
+      @buy_flag = true
     elsif @juice[juice_index_num] == nil
-      buy_flag = false
+      @buy_flag = false
     end
   end
 
   # 2. お金を入れる
   def insert(insert_money)
-    insert_flag = false
-    if AVAILABLE_MONEY.include?(insert_money)
-      @total_insert_money += insert_money
+    @insert_money = insert_money
+    @insert_flag = false
+    if AVAILABLE_MONEY.include?(@insert_money)
+      @total_insert_money += @insert_money
       @refund_money = @total_insert_money
-      insert_flag = true
+      @insert_flag = true
     end
   end
 
