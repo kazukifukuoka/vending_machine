@@ -1,48 +1,46 @@
-require './drink'
+require './stock.rb'
 require './message_to_user'
 
-class VendingMachine
-  # ユーザーが使えるお金
-  AVAILABLE_MONEY = [10, 50, 100, 500, 1000].freeze
-  attr_accessor :total_insert_money, :juice, :insert_money, :refund_money
+class VendengMachine
+  stock = Stock.new
+# プログラムの実行
+  loop do
+    hello
 
-  def initialize(**params)
-    @total_insert_money = 0
-    @refund_money = 0
-    @juice = {
-      1 => Drink.new(name: "水", price: 100, stock: 10),
-      2 => Drink.new(name: "コーラ", price: 150, stock: 5),
-      3 => Drink.new(name: "モンスター", price: 210, stock: 3),
-      4 => Drink.new(name: "フルーツドリンク", price: 80, stock: 8),
-      5 => Drink.new(name: "リポビタンD", price: 130, stock: 5),
-      6 => Drink.new(name: "ファンタグレープ", price: 150, stock: 10)
-    }
-  end
-
-  # 1. 飲み物の購入
-  def buy(juice_index_num)
-    if @juice[juice_index_num] && @total_insert_money >= @juice[juice_index_num].price
-      @total_insert_money -= @juice[juice_index_num].price
-      @refund_money = @total_insert_money
-      @buy_flag = true
-    elsif @juice[juice_index_num] == nil
-      @buy_flag = false
+    case  gets.to_i
+    when 1
+      select_juice
+      @select_juice_num = gets.to_i
+      @buy_flag = stock.buy(@select_juice_num)
+      if @buy_flag == true
+        buy_juice(stock.juice[@select_juice_num])
+        enough_money(stock.total_insert_money)
+      elsif @buy_flag == false
+        error
+      else
+        not_enough_money
+      end
+    when 2
+      insert_money
+      @insert_money = gets.to_i
+      @insert_flag = stock.insert(@insert_money)
+      if @insert_flag
+        confirm_money(stock.total_insert_money)
+      else
+        error
+      end
+    when 3
+      confirm_money(stock.total_insert_money)
+    when 4
+      if stock.refund_money > 0
+        stock.refund
+        refund_money(stock.refund_money)
+      else
+        thanks
+      end
+      break
+    else
+      error
     end
-  end
-
-  # 2. お金を入れる
-  def insert(insert_money)
-    @insert_money = insert_money
-    @insert_flag = false
-    if AVAILABLE_MONEY.include?(@insert_money)
-      @total_insert_money += @insert_money
-      @refund_money = @total_insert_money
-      @insert_flag = true
-    end
-  end
-
-  # 4. お釣りを出す
-  def refund
-      @refund_money = @total_insert_money
   end
 end
