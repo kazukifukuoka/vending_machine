@@ -10,18 +10,15 @@ def hello_message
   text
 end
 
-def select_juice_message
+def select_juice_message(juices)
   puts <<~text
 
   何を購入しますか？
-  1. 水(100円)
-  2. コーラ(150円)
-  3. モンスター(210円)
-  4. フルーツジュース(80円)
-  5. リポビタンD(130円)
-  6. ファンタグレープ(150円)
-
   text
+  juices.each do |i, juice|
+    puts "#{i}. #{juice.name}(#{juice.price}円)"
+  end
+  puts ""
 end
 
 def buy_juice_message(juice)

@@ -9,11 +9,11 @@ class VendengMachine
 
     case  gets.to_i
     when 1
-      select_juice_message
+      select_juice_message(stock.juices)
       @select_juice_num = gets.to_i
       @buy_flag = stock.buy(@select_juice_num)
       if @buy_flag == true
-        buy_juice_message(stock.juice[@select_juice_num])
+        buy_juice_message(stock.juices[@select_juice_num])
         enough_money_message(stock.total_insert_money)
       elsif @buy_flag == false
         error_message
