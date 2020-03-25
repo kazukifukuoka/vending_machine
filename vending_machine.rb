@@ -5,42 +5,42 @@ class VendengMachine
   stock = Stock.new
 # プログラムの実行
   loop do
-    hello
+    hello_message
 
     case  gets.to_i
     when 1
-      select_juice
+      select_juice_message
       @select_juice_num = gets.to_i
       @buy_flag = stock.buy(@select_juice_num)
       if @buy_flag == true
-        buy_juice(stock.juice[@select_juice_num])
-        enough_money(stock.total_insert_money)
+        buy_juice_message(stock.juice[@select_juice_num])
+        enough_money_message(stock.total_insert_money)
       elsif @buy_flag == false
-        error
+        error_message
       else
-        not_enough_money
+        not_enough_money_message
       end
     when 2
-      insert_money
+      insert_money_message
       @insert_money = gets.to_i
       @insert_flag = stock.insert(@insert_money)
       if @insert_flag
-        confirm_money(stock.total_insert_money)
+        confirm_money_message(stock.total_insert_money)
       else
-        error
+        error_message
       end
     when 3
-      confirm_money(stock.total_insert_money)
+      confirm_money_message(stock.total_insert_money)
     when 4
       if stock.refund_money > 0
         stock.refund
-        refund_money(stock.refund_money)
+        refund_money_message(stock.refund_money)
       else
-        thanks
+        thanks_message
       end
       break
     else
-      error
+      error_message
     end
   end
 end
