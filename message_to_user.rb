@@ -1,4 +1,4 @@
-def hello
+def hello_message
   puts <<~text
 
   どうしますか？
@@ -10,7 +10,7 @@ def hello
   text
 end
 
-def select_juice
+def select_juice_message
   puts <<~text
 
   何を購入しますか？
@@ -24,14 +24,14 @@ def select_juice
   text
 end
 
-def buy_juice(juice)
+def buy_juice_message(juice)
   puts <<~text
 
     #{juice.price}円の#{juice.name}を購入しました
   text
 end
 
-def enough_money(total_insert_money)
+def enough_money_message(total_insert_money)
   if total_insert_money > 0
     puts <<~text
 
@@ -43,11 +43,11 @@ def enough_money(total_insert_money)
   end
 end
 
-def not_enough_money
+def not_enough_money_message
   puts "お金が足りません"
 end
 
-def insert_money
+def insert_money_message
   puts <<~text
 
     どの硬貨を入れますか？
@@ -56,14 +56,14 @@ def insert_money
   text
 end
 
-def confirm_money(total_insert_money)
+def confirm_money_message(total_insert_money)
   puts <<~text
 
     自動販売機には#{total_insert_money}円入っています
     text
 end
 
-def error
+def error_message
   puts <<~text
 
       入力に誤りがあります
@@ -71,7 +71,7 @@ def error
     text
 end
 
-def refund_money(refund_money)
+def refund_money_message(refund_money)
   puts <<~text
 
       #{refund_money}円が戻ってきた
@@ -80,7 +80,7 @@ def refund_money(refund_money)
     text
 end
 
-def thanks
+def thanks_message
   puts <<~text
 
       お釣りはありません
