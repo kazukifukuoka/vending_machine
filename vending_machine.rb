@@ -11,13 +11,14 @@ class VendengMachine
     when 1
       select_juice_message(stock.juices)
       @select_juice_num = gets.to_i
+      error if @juices[juice_index_num].nil?
       @buy_flag = stock.buy(@select_juice_num)
       if @buy_flag == true
         buy_juice_message(stock.juices[@select_juice_num])
         enough_money_message(stock.total_insert_money)
-      elsif @buy_flag == false
-        error_message
-      else
+      # elsif @buy_flag == false
+      #   error_message
+      else @buy_flag == false
         not_enough_money_message
       end
     when 2
@@ -32,9 +33,8 @@ class VendengMachine
     when 3
       confirm_money_message(stock.total_insert_money)
     when 4
-      if stock.refund_money > 0
-        stock.refund
-        refund_money_message(stock.refund_money)
+      if stock.total_insert_money > 0
+        refund_money_message(stock.total_insert_money)
       else
         thanks_message
       end

@@ -24,9 +24,9 @@ class Stock
   def buy(juice_index_num)
     if @juices[juice_index_num] && @total_insert_money >= @juices[juice_index_num].price
       @total_insert_money -= @juices[juice_index_num].price
-      @refund_money = @total_insert_money
       @buy_flag = true
-    elsif @juices[juice_index_num] == nil
+    # elsif @juices[juice_index_num].nil?
+    else
       @buy_flag = false
     end
   end
@@ -37,13 +37,8 @@ class Stock
     @insert_flag = false
     if AVAILABLE_MONEY.include?(@insert_money)
       @total_insert_money += @insert_money
-      @refund_money = @total_insert_money
       @insert_flag = true
     end
   end
 
-  # 4. お釣りを出す
-  def refund
-      @refund_money = @total_insert_money
-  end
 end
