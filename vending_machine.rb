@@ -11,7 +11,7 @@ class VendengMachine
     when 1
       select_juice_message(stock.juices)
       @select_juice_num = gets.to_i
-      error if @juices[juice_index_num].nil?
+      error_message if @juices[@select_juice_num.nil?]
       @buy_flag = stock.buy(@select_juice_num)
       if @buy_flag == true
         buy_juice_message(stock.juices[@select_juice_num])
