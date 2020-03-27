@@ -22,10 +22,11 @@ class Stock
 
   # 1. 飲み物の購入
   def buy(juice_index_num)
-    if @juices[juice_index_num] && @total_insert_money >= @juices[juice_index_num].price
+    if @juices[juice_index_num].nil?
+      @buy_flag = "error"
+    elsif @total_insert_money >= @juices[juice_index_num].price
       @total_insert_money -= @juices[juice_index_num].price
       @buy_flag = true
-    # elsif @juices[juice_index_num].nil?
     else
       @buy_flag = false
     end
