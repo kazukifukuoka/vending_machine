@@ -16,7 +16,7 @@ def select_juice_message(juices)
   何を購入しますか？
   text
   juices.each do |i, juice|
-    puts "#{i}. #{juice.name}(#{juice.price}円)"
+    puts "#{i}. #{juice.name}(#{juice.price}円)  残り#{juice.stock}本"
   end
   puts ""
 end

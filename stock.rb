@@ -4,7 +4,8 @@ require './message_to_user'
 class Stock
   # ユーザーが使えるお金
   AVAILABLE_MONEY = [10, 50, 100, 500, 1000].freeze
-  attr_accessor :total_insert_money, :juices, :insert_money, :refund_money
+  REDUCE_STOCK_NUM = 1
+  attr_accessor :total_insert_money, :juices, :insert_money, :refund_money, :total_stock
 
   def initialize(**params)
     @total_insert_money = 0
@@ -18,14 +19,23 @@ class Stock
       6 => Drink.new(name: "ファンタグレープ", price: 150, stock: 10),
       7 => Drink.new(name: "烏龍茶", price: 110, stock: 7)
     }
+    # @total_stock = @juices.values
   end
 
   # 1. 飲み物の購入
   def buy(juice_index_num)
+    # @total_stock = @juices[juice_index_num].stock
     if @juices[juice_index_num].nil?
       @buy_flag = "error"
     elsif @total_insert_money >= @juices[juice_index_num].price
       @total_insert_money -= @juices[juice_index_num].price
+      # @total_stock -= REDUCE_STOCK_NUM
+      # @juices[juice_index_num].stock = @total_stock
+      # puts "#{@total_stock}"
+
+      # @total_stock.each do |i, juice|
+      #   puts "#{i}"
+      # end
       @buy_flag = true
     else
       @buy_flag = false
