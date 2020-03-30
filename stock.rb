@@ -4,8 +4,8 @@ require './message_to_user'
 class Stock
   # ユーザーが使えるお金
   AVAILABLE_MONEY = [10, 50, 100, 500, 1000].freeze
-  REDUCE_STOCK_NUM = 1
-  attr_accessor :total_insert_money, :juices, :insert_money, :refund_money, :total_stock
+  ADJUST_NUM = 1
+  attr_accessor :total_insert_money, :juices, :insert_money, :refund_money, :buy_count, :total_stock,:one_count, :two_count
 
   def initialize(**params)
     @total_insert_money = 0
@@ -19,7 +19,10 @@ class Stock
       6 => Drink.new(name: "ファンタグレープ", price: 150, stock: 10),
       7 => Drink.new(name: "烏龍茶", price: 110, stock: 7)
     }
-    # @total_stock = @juices.values
+    # @buy_count = 0
+    @one_count = 0
+    @two_count = 0
+
   end
 
   # 1. 飲み物の購入
@@ -29,13 +32,22 @@ class Stock
       @buy_flag = "error"
     elsif @total_insert_money >= @juices[juice_index_num].price
       @total_insert_money -= @juices[juice_index_num].price
-      # @total_stock -= REDUCE_STOCK_NUM
-      # @juices[juice_index_num].stock = @total_stock
-      # puts "#{@total_stock}"
 
-      # @total_stock.each do |i, juice|
-      #   puts "#{i}"
-      # end
+# ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+      @full_stock = @juices.values[juice_index_num - ADJUST_NUM].stock
+      p @full_stock
+      case juice_index_num
+      when 1
+        @one_count += 1
+        @buy_count = @one_count
+      when 2
+        @two_count += 1
+        @buy_count = @two_count
+      end
+      @total_stock = @full_stock - @buy_count
+      p @total_stock
+# ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+
       @buy_flag = true
     else
       @buy_flag = false
