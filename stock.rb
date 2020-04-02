@@ -5,7 +5,7 @@ class Stock
   # ユーザーが使えるお金
   AVAILABLE_MONEY = [10, 50, 100, 500, 1000].freeze
   ADJUST_NUM = 1
-  attr_accessor :total_insert_money, :juices, :insert_money, :refund_money, :buy_count, :total_stock,:one_count, :two_count
+  attr_accessor :total_insert_money, :juices, :insert_money, :refund_money
 
   def initialize(**params)
     @total_insert_money = 0
@@ -19,35 +19,15 @@ class Stock
       6 => Drink.new(name: "ファンタグレープ", price: 150, stock: 10),
       7 => Drink.new(name: "烏龍茶", price: 110, stock: 7)
     }
-    # @buy_count = 0
-    @one_count = 0
-    @two_count = 0
-
   end
 
   # 1. 飲み物の購入
   def buy(juice_index_num)
-    # @total_stock = @juices[juice_index_num].stock
     if @juices[juice_index_num].nil?
       @buy_flag = "error"
     elsif @total_insert_money >= @juices[juice_index_num].price
       @total_insert_money -= @juices[juice_index_num].price
-
-# ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
-      @full_stock = @juices.values[juice_index_num - ADJUST_NUM].stock
-      p @full_stock
-      case juice_index_num
-      when 1
-        @one_count += 1
-        @buy_count = @one_count
-      when 2
-        @two_count += 1
-        @buy_count = @two_count
-      end
-      @total_stock = @full_stock - @buy_count
-      p @total_stock
-# ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
-
+      @juices[juice_index_num].stock -= 1
       @buy_flag = true
     else
       @buy_flag = false
