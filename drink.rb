@@ -1,5 +1,6 @@
 class Drink
-  attr_reader :name, :price, :stock
+  attr_accessor :stock
+  attr_reader :name, :price
 
   def initialize(**params)
     @name = params[:name]
