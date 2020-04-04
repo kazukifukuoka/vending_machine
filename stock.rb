@@ -26,6 +26,7 @@ class Stock
     if @juices[juice_index_num].nil?
       @buy_flag = "error"
     elsif @total_insert_money >= @juices[juice_index_num].price
+      return if @juices[juice_index_num].stock == 0
       @total_insert_money -= @juices[juice_index_num].price
       @juices[juice_index_num].stock -= 1
       @buy_flag = true

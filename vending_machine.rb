@@ -19,8 +19,10 @@ class VendingMachine
         elsif @buy_flag == true
           buy_juice_message(@stock.juices[@select_juice_num])
           enough_money_message(@stock.total_insert_money)
-        else @buy_flag == false
+        elsif @buy_flag == false
           not_enough_money_message
+        else
+          no_stock_message
         end
       when 2
         insert_money_message
