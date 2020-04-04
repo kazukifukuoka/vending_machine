@@ -44,6 +44,13 @@ def not_enough_money_message
   puts "お金が足りません"
 end
 
+def no_stock_message
+  puts <<~text
+    申し訳ありません
+    在庫がありません
+  text
+end
+
 def insert_money_message
   puts <<~text
 
